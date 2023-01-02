@@ -1,0 +1,48 @@
+---
+
+app:
+  api:
+    logging:
+      enable: true
+      url-patterns: /delay/*,/api*
+      requestIdParamName: reqId
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    beans:
+      enabled: false
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    enable:
+      jvm: true
+      all: true
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles:
+        "[http.server.requests]": 0.5, 0.9, 0.95, 0.99
+      percentiles-histogram:
+        "[http.server.requests]": true
+      sla:
+        "[http.server.requests]": 100ms, 400ms, 500ms
+    server:
+      port: 10001
+  security:
+    enabled: true
+
+# curl http://localhost:10000/test/endpoint
+# curl http://localhost:10000/actuator/prometheus
+server:
+  port: 10000
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
