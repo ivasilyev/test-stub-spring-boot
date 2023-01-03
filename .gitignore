@@ -3,3 +3,4 @@ target/
 out/
 *WinSW*.exe
 *WinSW*.log
+*.jar
