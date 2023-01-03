@@ -1,0 +1,18 @@
+<service>
+    <id>test-stub-spring-boot</id>
+    <name>WinSW Spring Boot Test Stub Service</name>
+    <description>The system service for Spring Boot Test Stub</description>
+    <env name="SPRING_HOME" value="%BASE%"/>
+    <workingdirectory>%BASE%</workingdirectory>
+    <executable>java.exe</executable>
+    <arguments>
+        -jar
+        -Xms1024m
+        -Xmx1024m
+        "%BASE%\test-stub-spring-boot.jar"
+    </arguments>
+    <log mode="none"></log>
+    <onfailure action="restart" delay="10 sec"/>
+    <onfailure action="restart" delay="30 sec"/>
+    <onfailure action="none"/>
+</service>
