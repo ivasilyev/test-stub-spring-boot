@@ -1,6 +1,7 @@
 # test-stub-spring-boot
 
-Spring Boot Test Stub. 
+Spring Boot Test Stub.
+ 
 Simple. 
 
 ## Get the program
@@ -40,3 +41,8 @@ curl "http://hostname:10000/delay/test/500"
 ```bash
 curl "http://hostname:10000/actuator/prometheus"
 ```
+
+## Bonus: Recommended Grafana dashboards:
+
+* [JVM (Micrometer)](https://grafana.com/grafana/dashboards/4701-jvm-micrometer/ "JVM (Micrometer)")
+* [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/ "Node Exporter Full")
