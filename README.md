@@ -24,74 +24,26 @@ JAVA_HOME="/path/to/java/home" \
     -jar "test-stub-spring-boot.jar"
 ```
 
-## Access test endpoint
+## Access test endpoint Web UI
+
+```text
+http://hostname:10000/endpoint/ui
+```
+
+## Access test endpoint via REST API
 
 ```bash
-curl "http://hostname:10000/test/endpoint"
+curl "http://hostname:10000/endpoint"
 ```
 
 ## Change response delay time (in milliseconds)
 
 ```bash
-curl "http://hostname:10000/delay/test/500"
-```
-
-## Try the interactive mode (e.g. for test script correlation)
-
-### Get summands
-
-```shell script
-curl -i -X GET http://hostname:10000/interactive
-```
-```text
-HTTP/1.1 200
-Content-Type: application/json
-Content-Length: 74
-Date: Wed, 25 Jan 2023 09:00:41 GMT
-
-{
-  "summands" : {
-    "summand_1" : 453,
-    "summand_2" : 785
-  }
-}
-```
-
-### Post sum
-
-```shell script
-curl -i -X POST http://hostname:10000/interactive -H "Content-Type: application/json" -d '{"sum": 1238}'
-```
-```text
-HTTP/1.1 200
-Content-Type: application/json
-Content-Length: 55
-Date: Wed, 25 Jan 2023 09:00:57 GMT
-
-{
-  "answer" : {
-    "evaluation" : "correct"
-  }
-}
-```
-
-### Try again to ensure that values have changed
-
-```shell script
-curl -i -X POST http://hostname:10000/interactive -H "Content-Type: application/json" -d '{"sum": 1238}'
-```
-```text
-HTTP/1.1 400
-Content-Type: application/json
-Content-Length: 53
-Date: Wed, 25 Jan 2023 09:01:01 GMT
-Connection: close
-
-{
-  "answer" : {
-    "evaluation" : "wrong"
-  }
-}
+curl \
+    --request POST \
+    --data-binary '{"delayMs":555}' \
+    --header 'Content-Type: application/json' \
+    "http://hostname:10000/endpoint/api/set-delay"
 ```
 
 ## Access program monitoring metrics
