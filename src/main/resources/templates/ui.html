@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="60">
+        <meta http-equiv="Content-Type" content="text/html">
+        <title>Endpoint Page</title>
+        <script type="text/javascript" th:src="@{/js/script.js}" defer></script>
+        <link th:href="@{/styles/style.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+    <h1 class="header"><span>Endpoint</span> <span id="meta_endpoint_name">[[${endpoint_name}]]</span></h1>
+        <table>
+            <tbody>
+            <tr>
+                <td>Current delay, ms:</td>
+                <td id="delay_ms"></td>
+            </tr>
+            <tr>
+                <td>Enter new value:</td>
+                <td>
+                    <input class="input-field" type="number" min="0" id="new_delay" placeholder="Delay, ms" required>
+                    <button class="button" id="set_button">Set delay</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Reset to default:</td>
+                <td>
+                    <button class="reset-button" id="reset_button">Reset delay</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
