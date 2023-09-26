@@ -7,6 +7,10 @@ app:
       url-patterns: /delay/*,/api*
       requestIdParamName: reqId
 
+info:
+  app:
+    version: "1.2"
+
 management:
   endpoint:
     metrics:
