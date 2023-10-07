@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.test.spring_boot_stub.constants.Constants;
+import org.test.spring_boot_stub.service.api.EndPointRestController;
 import org.test.spring_boot_stub.utils.Utils;
 
 
@@ -13,7 +14,7 @@ import org.test.spring_boot_stub.utils.Utils;
 public class EndPointUiController {
     private static final Logger LOGGER = Logger.getLogger(EndPointUiController.class.getName());
 
-    private static final String ENDPOINT_NAME = "endpoint";
+    private static final String ENDPOINT_NAME = EndPointRestController.ENDPOINT_NAME;
     private static final String BASE_URL = "/" + ENDPOINT_NAME + "/ui";
 
     private final String RUID = Utils.getUuid();

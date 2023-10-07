@@ -1,6 +1,9 @@
 package org.test.spring_boot_stub.service.api;
 
 import java.util.logging.Logger;
+
+import io.micrometer.core.instrument.Counter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +17,7 @@ import org.test.spring_boot_stub.utils.Utils;
 public class EndPointRestController {
     private static final Logger LOGGER = Logger.getLogger(EndPointRestController.class.getName());
 
-    private final static String ENDPOINT_NAME = "endpoint";
+    public final static String ENDPOINT_NAME = "endpoint";
     private static final String BASE_URL = "/" + ENDPOINT_NAME;
 
     private static final String API_URL = BASE_URL + "/api";
@@ -24,6 +27,9 @@ public class EndPointRestController {
     private final int DEFAULT_DELAY_MS = 500;
 
     private int delayMs = DEFAULT_DELAY_MS;
+
+    @Autowired
+    private Counter opsProcessed;
 
     /*
     curl \
@@ -99,6 +105,7 @@ public class EndPointRestController {
             ENDPOINT_NAME
         ));
         Utils.pause(this.delayMs, this.RUID);
+        opsProcessed.increment();
         return "{\"success\":\"true\"}";
     }
 
