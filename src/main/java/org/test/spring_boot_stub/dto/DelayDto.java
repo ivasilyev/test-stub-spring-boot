@@ -1,9 +1,14 @@
 package org.test.spring_boot_stub.dto;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
 
 public class DelayDto {
-    private static final Logger LOGGER = Logger.getLogger(DelayDto.class.getName());
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private int delayMs;
 
@@ -12,12 +17,9 @@ public class DelayDto {
     }
 
     public void setDelayMs(int newDelay) {
-        LOGGER.fine(String.format(
-            "Delay changed from %s to %s",
-            newDelay,
-            this.delayMs
-        ));
+
+        LOGGER.info("Delay changed from {} to {}", newDelay, this.delayMs);
+
         this.delayMs = newDelay;
     }
-
 }
