@@ -1,6 +1,8 @@
 package org.test.spring_boot_stub.service.api;
 
 import io.micrometer.core.instrument.Counter;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,11 +36,7 @@ public class EndPointRestController {
 
     private Counter opsProcessed;
 
-    /*
-    curl \
-        --request GET \
-        "http://localhost:10000/endpoint/api/get-delay"
-    */
+    @Operation(summary = "Get delay in milliseconds")
     @GetMapping(
         value = API_URL + "/get-delay"
     )
@@ -48,13 +46,7 @@ public class EndPointRestController {
         return delayDto;
     }
 
-    /*
-    curl \
-        --request POST \
-        --data-binary '{"delayMs":555}' \
-        --header 'Content-Type: application/json' \
-        "http://localhost:10000/endpoint/api/set-delay"
-    */
+    @Operation(summary = "Set delay in milliseconds")
     @PostMapping(
         value = API_URL + "/set-delay"
     )
@@ -70,11 +62,7 @@ public class EndPointRestController {
         return delayDto;
     }
 
-    /*
-    curl \
-        --request POST \
-        "http://localhost:10000/endpoint/api/reset-delay"
-    */
+    @Operation(summary = "Reset delay to default")
     @PostMapping(
         value = API_URL + "/reset-delay"
     )
@@ -93,11 +81,7 @@ public class EndPointRestController {
         return this.getDelay();
     }
 
-    /*
-    curl \
-        --request GET \
-        "http://localhost:10000/endpoint"
-    */
+    @Operation(summary = "Get basic response")
     @GetMapping(
             value = BASE_URL,
             produces = "application/json"
