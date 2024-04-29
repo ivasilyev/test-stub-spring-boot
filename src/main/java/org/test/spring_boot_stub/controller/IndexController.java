@@ -23,7 +23,7 @@ public class IndexController implements ErrorController{
         produces = "application/json"
     )
     public String error() {
-        LOGGER.info(
+        LOGGER.debug(
                 "Error request received from '{}' to '{}' at {}",
                 Utils.getUuid(),
                 this.RUID,

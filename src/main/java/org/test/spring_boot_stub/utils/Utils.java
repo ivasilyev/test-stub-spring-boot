@@ -37,19 +37,21 @@ public class Utils {
 
             } catch (InterruptedException e) {
 
-                LOGGER.info(String.format("Error: %s", e.getMessage()));
+                e.printStackTrace();
+
+                LOGGER.debug("Error: '{}'", e.getMessage());
             }
         }
 
         Date delayedResponseDate = getDate();
 
-        LOGGER.info(
+        LOGGER.debug(
                 "Response sent from '{}'' at {}",
                 rUid,
                 Constants.DATE_FORMAT.format(delayedResponseDate)
         );
 
-        LOGGER.info(
+        LOGGER.debug(
                 "Response time for '{}': {} ms",
                 rUid,
                 delayedResponseDate.getTime() - requestReceiveDate.getTime()

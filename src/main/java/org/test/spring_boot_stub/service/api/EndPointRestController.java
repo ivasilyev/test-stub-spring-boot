@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.test.spring_boot_stub.constants.Constants;
 import org.test.spring_boot_stub.dto.DelayDto;
 import org.test.spring_boot_stub.utils.Utils;
 
 import java.lang.invoke.MethodHandles;
+
+import static org.test.spring_boot_stub.constants.Constants.DATE_FORMAT;
+import static org.test.spring_boot_stub.constants.Constants.MIME_JSON;
 
 
 @RestController
@@ -51,11 +53,11 @@ public class EndPointRestController {
         value = API_URL + "/set-delay"
     )
     public DelayDto setDelay(@RequestBody DelayDto delayDto) {
-        LOGGER.info(
+        LOGGER.debug(
                 "Delay setting request received from '{}' to '{}' at {} for endpoint '{}'",
                 Utils.getUuid(),
                 this.RUID,
-                Constants.DATE_FORMAT.format(Utils.getDate()),
+                DATE_FORMAT.format(Utils.getDate()),
                 ENDPOINT_NAME
         );
         this.delayMs = delayDto.getDelayMs();
@@ -68,11 +70,11 @@ public class EndPointRestController {
     )
     public DelayDto resetDelay() {
 
-        LOGGER.info(
+        LOGGER.debug(
                 "Delay resetting request received from '{}' to '{}' at {} for endpoint '{}'",
                 Utils.getUuid(),
                 this.RUID,
-                Constants.DATE_FORMAT.format(Utils.getDate()),
+                DATE_FORMAT.format(Utils.getDate()),
                 ENDPOINT_NAME
         );
 
@@ -84,18 +86,18 @@ public class EndPointRestController {
     @Operation(summary = "Get basic response")
     @GetMapping(
             value = BASE_URL,
-            produces = "application/json"
+            produces = MIME_JSON
     )
     public String basicResponse() {
-        LOGGER.info(
+        LOGGER.debug(
                 "Request received from '{}' to '{}' at {} for endpoint '{}'",
                 Utils.getUuid(),
                 this.RUID,
-                Constants.DATE_FORMAT.format(Utils.getDate()),
+                DATE_FORMAT.format(Utils.getDate()),
                 ENDPOINT_NAME
         );
         Utils.pause(this.delayMs, this.RUID);
-        opsProcessed.increment();
+        this.opsProcessed.increment();
         return "{\"success\":\"true\"}";
     }
 

@@ -18,7 +18,7 @@ public class DelayDto {
 
     public void setDelayMs(int newDelay) {
 
-        LOGGER.info("Delay changed from {} to {}", newDelay, this.delayMs);
+        LOGGER.debug("Delay changed from {} to {}", newDelay, this.delayMs);
 
         this.delayMs = newDelay;
     }

@@ -6,4 +6,6 @@ public class Constants {
     
     public static final SimpleDateFormat DATE_FORMAT =  new SimpleDateFormat("yyy-MM-dd HH:mm:ss.SSS");
 
+    public static final String MIME_JSON = "application/json";
+
 }

@@ -27,7 +27,7 @@ public class EndPointUiController {
         value = BASE_URL
     )
     public String endPointUi(Model model) {
-        LOGGER.info(
+        LOGGER.debug(
                 "UI request received from '{}' to '{}' at {} for endpoint '{}'",
                 Utils.getUuid(),
                 this.RUID,
