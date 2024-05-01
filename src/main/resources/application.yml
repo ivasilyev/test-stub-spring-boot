@@ -47,6 +47,7 @@ management:
 server:
   port: 10000
 
-spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+springdoc:
+  swagger-ui:
+    path: "/help"
+    operationsSorter: method

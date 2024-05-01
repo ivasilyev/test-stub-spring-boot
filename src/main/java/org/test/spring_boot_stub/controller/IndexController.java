@@ -10,6 +10,8 @@ import org.test.spring_boot_stub.utils.Utils;
 
 import java.lang.invoke.MethodHandles;
 
+import static org.test.spring_boot_stub.constants.Constants.MIME_JSON;
+
 
 @RestController
 public class IndexController implements ErrorController{
@@ -20,7 +22,7 @@ public class IndexController implements ErrorController{
 
     @GetMapping(
         value = "/error*",
-        produces = "application/json"
+        produces = MIME_JSON
     )
     public String error() {
         LOGGER.debug(
@@ -29,7 +31,7 @@ public class IndexController implements ErrorController{
                 this.RUID,
                 Constants.DATE_FORMAT.format(Utils.getDate())
         );
-        return "Not Found";
+        return "404 Not Found";
     }
 
 }

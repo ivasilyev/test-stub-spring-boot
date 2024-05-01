@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.test.spring_boot_stub.dto.DelayDto;
+import org.test.spring_boot_stub.dto.EmulatorDto;
 import org.test.spring_boot_stub.utils.Utils;
 
 import java.lang.invoke.MethodHandles;
@@ -38,21 +38,27 @@ public class EndPointRestController {
 
     private Counter opsProcessed;
 
+
     @Operation(summary = "Get delay in milliseconds")
     @GetMapping(
-        value = API_URL + "/get-delay"
+            value = API_URL + "/get-delay"
     )
-    public DelayDto getDelay() {
-        DelayDto delayDto = new DelayDto();
+    public EmulatorDto getDelay() {
+
+        EmulatorDto delayDto = new EmulatorDto();
+
         delayDto.setDelayMs(this.delayMs);
+
         return delayDto;
     }
 
+
     @Operation(summary = "Set delay in milliseconds")
     @PostMapping(
-        value = API_URL + "/set-delay"
+            value = API_URL + "/set-delay"
     )
-    public DelayDto setDelay(@RequestBody DelayDto delayDto) {
+    public EmulatorDto setDelay(@RequestBody EmulatorDto emulatorDto) {
+
         LOGGER.debug(
                 "Delay setting request received from '{}' to '{}' at {} for endpoint '{}'",
                 Utils.getUuid(),
@@ -60,15 +66,18 @@ public class EndPointRestController {
                 DATE_FORMAT.format(Utils.getDate()),
                 ENDPOINT_NAME
         );
-        this.delayMs = delayDto.getDelayMs();
-        return delayDto;
+
+        this.delayMs = emulatorDto.getDelayMs();
+
+        return emulatorDto;
     }
+
 
     @Operation(summary = "Reset delay to default")
     @PostMapping(
-        value = API_URL + "/reset-delay"
+            value = API_URL + "/reset-delay"
     )
-    public DelayDto resetDelay() {
+    public EmulatorDto resetDelay() {
 
         LOGGER.debug(
                 "Delay resetting request received from '{}' to '{}' at {} for endpoint '{}'",
@@ -83,6 +92,7 @@ public class EndPointRestController {
         return this.getDelay();
     }
 
+
     @Operation(summary = "Get basic response")
     @GetMapping(
             value = BASE_URL,
@@ -96,9 +106,11 @@ public class EndPointRestController {
                 DATE_FORMAT.format(Utils.getDate()),
                 ENDPOINT_NAME
         );
+
         Utils.pause(this.delayMs, this.RUID);
+
         this.opsProcessed.increment();
+
         return "{\"success\":\"true\"}";
     }
-
 }
